@@ -1,9 +1,10 @@
 from django.conf.urls import patterns, include, url
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django import forms
 from django.core.urlresolvers import reverse
-from django.views.generic import TemplateView, CreateView
+from django.http import HttpResponseRedirect
+from django.views.generic import CreateView
+from mediabank.api import api
 
 
 class RegisterForm(forms.ModelForm):
@@ -20,18 +21,12 @@ class RegisterView(CreateView):
         self.object = form.save(commit=False)
         self.object.set_password(self.object.password)
         self.object.save()
-        return super(RegisterView, self).form_valid(form)
-
-    def get_success_url(self):
-        return reverse('home')
+        return HttpResponseRedirect(reverse('bank:list'))
 
 
 urlpatterns = patterns('',
-    url(
-        r'^$',
-        login_required(TemplateView.as_view(template_name='home.html')),
-        name='home'
-    ),
+    url(r'^$', include('mediabank.urls', namespace='bank')),
+    url(r'^api/', include(api.urls)),
     url(
         r'^register/$',
         RegisterView.as_view(),
