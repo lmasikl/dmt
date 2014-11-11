@@ -1,0 +1,10 @@
+# Created by .gitignore support plugin (hsz.mobi)
+mongod.lock
+local.0
+dmt_db.ns
+local.ns
+dmt_db.0
+*.pyc
+.idea
+_tmp
+env
