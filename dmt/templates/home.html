@@ -3,24 +3,26 @@
 {% load staticfiles %}
 
 {% block content %}
-  <div>
+  <div style="width: 70%; float: right;">
     <label id="create_message"></label>
     <form action="{% url 'logout' %}" method="post">
       {% csrf_token %}
       <button type="submit">{{ user }}, Logout</button>
     </form>
   </div>
-  <div>
+
+  <div style="width: 30%;">
     <form action="/api/v1/file/?format=json" method="post" id="upload_file">
       {% csrf_token %}
-      <input type="text" name="type" />
-      <button type="submit">Upload</button>
+      <label for="file_upload_input"></label>
+      <input type="text" name="type" id="file_upload_input" />
+      <button type="submit">Upload File</button>
     </form>
   </div>
 
-  <h1 id="page-title">Files list</h1>
-  <div id="content">
-  </div>
+  <h2 id="page-title">Files list</h2>
+
+  <div id="content"></div>
 {% endblock %}
 
 {% block extra_js %}

@@ -11,8 +11,8 @@ var edit_template = function(data){
     _user_id = _user_id[_user_id.length - 2] * 1;
     if (user_id == _user_id){
       return '' +
-          '<button type="submit">Update</button>' +
-          '<button type="submit" id="delete" value="' + data.resource_uri + '">Delete</button>';
+          '<button type="submit">Update File</button>' +
+          '<button type="submit" id="delete" value="' + data.resource_uri + '">Delete File</button>';
     }
     return '';
   };
@@ -21,7 +21,7 @@ var edit_template = function(data){
         '<h3>Created: ' + data.date + '</h3>' +
         print_input('Type', data.type, 'type') +
         '<h4>Size: ' +  data.size + '</h4>' +
-        '<button type="submit" id="return">Return</button>' +
+        '<button type="submit" id="return">Show List</button>' +
         has_perms() +
       '</form>';
 };
