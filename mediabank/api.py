@@ -59,6 +59,14 @@ class FileResource(ModelResource):
         request.META['CONTENT_TYPE'] = 'application/json; charset=UTF-8'
         return super(FileResource, self).put_detail(request, **kwargs)
 
+    def authorized_delete_detail(self, object_list, bundle):
+        if bundle.obj.owner == bundle.request.user:
+            return super(FileResource, self).authorized_delete_detail(
+                object_list, bundle
+            )
+
+        return False
+
 
 api = Api(api_name='v1')
 api.register(FileResource())
