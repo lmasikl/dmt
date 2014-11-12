@@ -1,4 +1,3 @@
-from mongoengine import connect
 import os
 
 DEBUG = True
@@ -57,12 +56,13 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
 ROOT_URLCONF = 'dmt.urls'
 
+# Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'dmt.wsgi.application'
 
 TEMPLATE_DIRS = (
