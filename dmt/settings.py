@@ -9,10 +9,17 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django_mongodb_engine',
+#         'NAME': 'dmt_db',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': 'dmt_db',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'dmt_db.db',
     }
 }
 
@@ -61,7 +68,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'dmt.urls'
 
-# Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'dmt.wsgi.application'
 
 TEMPLATE_DIRS = (
@@ -74,6 +80,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'tastypie',
+    # 'tastypie_mongoengine',
     'mediabank',
 )
 

@@ -1,14 +1,32 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block content %}
   <div>
+    <label id="create_message"></label>
     <form action="{% url 'logout' %}" method="post">
       {% csrf_token %}
       <button type="submit">{{ user }}, Logout</button>
     </form>
   </div>
-
   <div>
-    <h1>Files list</h1>
+    <form action="/api/v1/file/?format=json" method="post" id="upload_file">
+      {% csrf_token %}
+      <input type="text" name="type" />
+      <button type="submit">Upload</button>
+    </form>
   </div>
+
+  <h1 id="page-title">Files list</h1>
+  <div id="content">
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+  var meta = '?format=json&username={{ user.username }}&api_key={{ user.api_key.key }}';
+  var user_id = {{ user.id }};
+  </script>
+  <script src="{% static 'scripts.js' %}"></script>
 {% endblock %}

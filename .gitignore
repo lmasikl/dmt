@@ -9,3 +9,4 @@ dmt_db.0
 _tmp
 env
 journal
+*.db
