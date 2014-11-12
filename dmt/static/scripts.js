@@ -33,6 +33,14 @@ var list = function(){
   $.ajax({
     url: "/api/v1/file/" + meta,
     success: function(data) {
+      var is_owner = function(obj){
+        var _user_id = obj.owner.split('/');
+        _user_id = _user_id[_user_id.length - 2] * 1;
+        if (user_id == _user_id){
+          return '*';
+        }
+        return '';
+      };
       if (data.hasOwnProperty('objects')) {
         var l = data.objects.length;
         if (l > 0) {
@@ -41,7 +49,7 @@ var list = function(){
             $('#files_list').append('' +
                 '<li>' +
                   '<a class="api_link" href="' + o.resource_uri + '">' +
-                    o.type + ' : ' + o.date +
+                    o.type + ' : ' + o.date + is_owner(o) +
                   '</a>' +
                 '</li>'
             );

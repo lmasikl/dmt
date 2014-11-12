@@ -4,7 +4,8 @@
   <h1>Register page</h1>
   <form action="" method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_p }}
     <button type="submit">Register</button>
+    <a href="{% url 'login' %}">Login</a>
   </form>
 {% endblock %}
