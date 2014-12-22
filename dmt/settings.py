@@ -1,3 +1,4 @@
+from mongoengine import connect
 import os
 
 DEBUG = True
@@ -9,17 +10,11 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django_mongodb_engine',
-#         'NAME': 'dmt_db',
-#     }
-# }
 
+connect('mongo')
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'dmt_db.db',
+        'ENGINE': 'django.db.backends.dummy'
     }
 }
 
@@ -62,7 +57,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
@@ -80,8 +75,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'tastypie',
-    # 'tastypie_mongoengine',
-    'mediabank',
+    'tastypie_mongoengine',
+    'media_bank',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
